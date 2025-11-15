@@ -12,14 +12,21 @@
         ></PostItem>
       </div>
     </div>
+    <hr clss="my-4" />
+    <AppCard>
+      <PostDetailView :id="1"></PostDetailView>
+    </AppCard>
   </div>
 </template>
 
 <script setup>
+//:(v-bind) 표현식 결과를 props로 전달 :id="1" 이면 숫자 1을 전달, 문자의 경우 '1'써주면 됨.
 import PostItem from '@/components/posts/PostItem.vue'
 import { getPosts } from '@/api/posts'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import PostDetailView from '@/views/posts/PostDetailView.vue'
+import AppCard from '@/components/AppCard.vue'
 const router = useRouter()
 const posts = ref([])
 
