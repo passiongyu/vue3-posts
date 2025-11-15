@@ -30,8 +30,21 @@ import AppCard from '@/components/AppCard.vue'
 const router = useRouter()
 const posts = ref([])
 
-const fetchPosts = () => {
-  posts.value = getPosts()
+const fetchPosts = async () => {
+  try {
+    const { data } = await getPosts() //문법적으로 더 심플
+    posts.value = data
+  } catch (error) {
+    console.error(error)
+  }
+
+  /* getPosts()
+    .then(response => {
+      console.log('response: ', response)
+    })
+    .catch(error => {
+      console.log('error: ', error)
+    }) */
 }
 fetchPosts()
 const goPage = id => {

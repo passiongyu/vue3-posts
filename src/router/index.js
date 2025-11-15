@@ -58,7 +58,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHistory('/'), //운영
+  //history: createWebHashHistory(),  //SEO 검색엔진 최적화에 나쁜 영향을 끼친다.
   routes,
 })
 
