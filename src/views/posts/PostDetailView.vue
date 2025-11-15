@@ -33,7 +33,7 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const props = defineProps({
-  id: Number,
+  id: String,
 })
 
 //const route = useRoute()
