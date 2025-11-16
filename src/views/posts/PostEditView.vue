@@ -18,6 +18,11 @@
         <button class="btn btn-primary">수정</button>
       </template>
     </PostForm>
+    <AppAlert
+      :show="showAlert"
+      :message="alertMessage"
+      :type="alertType"
+    ></AppAlert>
   </div>
 </template>
 
@@ -27,6 +32,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useRouter } from 'vue-router'
 import PostForm from '@/components/posts/PostForm.vue'
+import AppAlert from '@/components/AppAlert.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -55,13 +61,28 @@ fetchPost()
 const edit = async () => {
   try {
     await updatePost(id, { ...form.value })
-    router.push({ name: 'PostDetail', param: { id } })
+    //router.push({ name: 'PostDetail', param: { id } })
+    vAlert('수정이 완료되었습니다', 'success')
   } catch (error) {
     console.error(error)
+    vAlert('네트워크 오류')
   }
 }
 
 const goDetailPage = () => router.push({ name: 'PostDetail', params: { id } })
+
+//alert
+const showAlert = ref(false)
+const alertMessage = ref('')
+const alertType = ref('')
+const vAlert = (message, type = 'error') => {
+  showAlert.value = true
+  alertMessage.value = message
+  alertType.value = type
+  setTimeout(() => {
+    showAlert.value = false
+  }, 2000)
+}
 </script>
 
 <style lang="scss" scoped></style>
