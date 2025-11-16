@@ -1,12 +1,11 @@
 import { posts } from '.'
 
 export function getPosts(params) {
-  console.log(params)
   return posts.get('/', { params })
 }
 
 export function getPostById(id) {
-  return posts.get(id)
+  return posts.get(`${id}`)
 }
 
 export function createPost(data) {
